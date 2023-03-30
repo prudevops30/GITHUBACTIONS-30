@@ -12,7 +12,7 @@ jobs:
           pwd
           node -v
           ls -a
-       - name: python command
+      - name: python command
         run: |
           import platform  #import platform as a package
           print(platform.processor())  #to find out processor type
