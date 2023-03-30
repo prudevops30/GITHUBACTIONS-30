@@ -12,3 +12,16 @@ jobs:
           pwd
           node -v
           ls -a
+       - name: python command
+        run: |
+          import platform  #import platform as a package
+          print(platform.processor())  #to find out processor type
+        shell: python
+  run-windows-commands:
+    runs-on: windows-latest  
+    needs: ["run-shell-commands"]  # has to run before windows
+    steps:
+      - name: Directory
+        run: pwd
+        shell: bash
+     
