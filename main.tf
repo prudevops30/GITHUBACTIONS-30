@@ -10,8 +10,6 @@ resource "aws_vpc" "actions" {
        Team = "Devops"
        Environment = "Prod"
     }
-    
-  
 }
 
 terraform {
@@ -23,7 +21,6 @@ terraform {
     }
   }
 }
-
 backend "s3" {
   bucket = "bootcamp30"
   key    = "prod/terraform.tfstate"
