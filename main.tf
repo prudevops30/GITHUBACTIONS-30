@@ -10,6 +10,21 @@ resource "aws_vpc" "actions" {
        Team = "Devops"
        Environment = "Prod"
     }
-    
-  
 }
+
+terraform {
+  required_version = "~> 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0" #optional but recommended in production
+    }
+  }
+  backend "s3" {
+  bucket = "bootcamp30-76-prudence"
+  key    = "prod/terraform.tfstate"
+  region = "us-east-2"
+  }
+}
+
+
