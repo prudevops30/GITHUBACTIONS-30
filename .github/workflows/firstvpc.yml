@@ -8,10 +8,14 @@ env:
 
 jobs:
   terraform_workflow:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Set Terraform
         uses: hashicorp/setup-terraform@v2
         with: 
@@ -22,7 +26,11 @@ jobs:
         run: terraform validate
       - name: Terraform plan
         run: terraform plan
-      - name: Terraform apply
-        run: terraform apply -auto-approve
-      - name: Terraform destroy
-        run: terraform destroy -auto-approve  
+      - name: release
+        run: npx semantic-release  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     # - name: Terraform apply
+      #  run: terraform apply -auto-approve
+      #- name: Terraform destroy
+       # run: terraform destroy -auto-approve  
