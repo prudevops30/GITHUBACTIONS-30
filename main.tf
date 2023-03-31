@@ -1,8 +1,18 @@
-/*# Configure the AWS Provider
 provider "aws" {
-  region = "us-east-2"
+  region =  "us-east-2"
 }
-*/
+
+resource "aws_vpc" "actions" {
+    cidr_block = "10.0.0.0/16"
+
+    tags = {
+      "name" = "class30"
+       Team = "Devops"
+       Environment = "Prod"
+    }
+    
+  
+}
 
 terraform {
   required_version = "~> 1.0"
@@ -16,6 +26,6 @@ terraform {
 
 backend "s3" {
   bucket = "bootcamp30"
-  acl    = "prod/terraform.tfstate"
+  key    = "prod/terraform.tfstate"
   region = "us-east-2"
 }
