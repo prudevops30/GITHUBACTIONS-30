@@ -21,7 +21,7 @@ terraform {
     }
   }
   backend "s3" {
-  bucket = "bootcamp30"
+  bucket = "bootcamp30-76-prudence"
   key    = "prod/terraform.tfstate"
   region = "us-east-2"
   }
