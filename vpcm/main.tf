@@ -1,16 +1,16 @@
 provider "aws" {
-  region =  "us-east-2"
+  region = "us-east-2"
 }
 
 resource "aws_vpc" "actions" {
-    cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 
-    tags = {
-      Name = "class30"
-       Team = "G7"
-       Environment = "Prod"
-       Division = "HR"
-    }
+  tags = {
+    Name        = "class30"
+    Team        = "G7"
+    Environment = "Prod"
+    Division    = "HR"
+  }
 }
 
 terraform {
@@ -22,9 +22,9 @@ terraform {
     }
   }
   backend "s3" {
-  bucket = "bootcamp30-76-prudence"
-  key    = "prod/terraform.tfstate"
-  region = "us-east-2"
+    bucket = "bootcamp30-76-prudence"
+    key    = "prod/terraform.tfstate"
+    region = "us-east-2"
   }
 }
 
