@@ -20,9 +20,11 @@ terraform {
       version = "~> 4.0" #optional but recommended in production
     }
   }
-}
-backend "s3" {
+  backend "s3" {
   bucket = "bootcamp30"
   key    = "prod/terraform.tfstate"
   region = "us-east-2"
+  }
 }
+
+
