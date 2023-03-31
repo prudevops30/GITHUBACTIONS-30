@@ -1,7 +1,6 @@
 name: shell commands
 on: 
-  - push
-  #workflow_dispatch:
+  - workflow_dispatch:
 env: 
   AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -27,12 +26,12 @@ jobs:
       - name: Terraform plan
         run: terraform plan
       - name: release
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'workflow_dispatch' && github.event_name == 'push'
         run: npx semantic-release  
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Terraform apply
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'workflow_dispatch' && github.event_name == 'push'
         run: terraform apply -auto-approve
       #- name: Terraform destroy
        # run: terraform destroy -auto-approve  
